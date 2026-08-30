@@ -1,0 +1,415 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tuition Academy - Digital Marketing Project</title><style>
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7f9;color:#222;line-height:1.6}
+header{background:#4a2e6e;color:#fff;text-align:center;padding:55px 8%;position:relative;overflow:hidden}
+header::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(255,255,255,.05) 28px);pointer-events:none}
+header>*{position:relative}
+h1{font-size:40px;margin:0;letter-spacing:.5px}
+nav{background:#fff;padding:14px;text-align:center;position:sticky;top:0;box-shadow:0 2px 8px #0001;z-index:10}
+nav a{margin:0 9px;color:#142b44;text-decoration:none;font-weight:bold;font-size:13px;display:inline-block;cursor:pointer;padding-bottom:5px;border-bottom:2px solid transparent;transition:.2s}
+nav a:hover{color:#e07a2d}
+nav a.active{color:#e07a2d;border-bottom:2px solid #e07a2d}
+section{max-width:950px;margin:30px auto;padding:30px;background:#fff;border-radius:12px}
+h2{color:#142b44;border-bottom:2px solid #e5ebf0;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
+.card{border:1px solid #e0e6eb;border-radius:9px;padding:16px;background:#fafbfd;transition:.2s;cursor:default}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 18px #0001;border-color:#e07a2d55}
+.badge{display:inline-block;background:#eaf0f5;padding:6px 10px;margin:4px;border-radius:18px;color:#142b44}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #ddd;text-align:left}
+th{background:#eef3f7}
+.ad{padding:28px;border-radius:12px;text-align:center;border:2px dashed #9db2c5;background:#f4f8fb}
+.offer{font-size:30px;font-weight:bold;color:#142b44}
+footer{background:#142b44;color:#fff;text-align:center;padding:25px}
+
+.page{display:none;animation:fade .22s ease}.page.active{display:block}
+.hero{background:linear-gradient(135deg,#eef7ff,#fff5ea);text-align:center;padding:50px 30px;border:1px solid #dfe7ee}
+.hero h2{font-size:34px;border:0;margin:0 0 12px}
+.hero p{max-width:760px;margin:8px auto 22px}
+.btn{display:inline-block;border:0;border-radius:24px;padding:12px 20px;background:#e07a2d;color:white;font-weight:bold;cursor:pointer;margin:5px;transition:.2s}
+.btn:hover{background:#c9691f;transform:translateY(-2px)}
+.btn.alt{background:#142b44}
+.btn.alt:hover{background:#0d1f33}
+nav{z-index:10}nav a{display:inline-block;cursor:pointer}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
+input,textarea{width:100%;box-sizing:border-box;padding:11px;margin:6px 0 12px;border:1px solid #d6dee6;border-radius:8px;font:inherit}
+input:focus,textarea:focus{outline:2px solid #e07a2d88;border-color:#e07a2d}
+@keyframes fade{from{opacity:.15;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+/* new bits */
+.stats-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:15px;margin:25px 0}
+.stat{text-align:center;background:#fafbfd;border:1px solid #e0e6eb;border-radius:9px;padding:18px 10px}
+.stat .num{font-size:28px;font-weight:bold;color:#e07a2d;display:block}
+.stat .lbl{font-size:13px;color:#555}
+.quote-card{border-left:4px solid #e07a2d;background:#fafbfd;border-radius:0 9px 9px 0;padding:16px 18px;margin-bottom:12px}
+.quote-card b{color:#142b44}
+.faq details{border:1px solid #e0e6eb;border-radius:9px;padding:12px 16px;margin-bottom:10px;background:#fafbfd}
+.faq summary{cursor:pointer;font-weight:bold;color:#142b44}
+.faq details[open] summary{color:#e07a2d}
+.wa-float{position:fixed;bottom:22px;right:22px;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 14px #0003;text-decoration:none;z-index:50;transition:.2s}
+.wa-float:hover{transform:scale(1.08)}
+.section-eyebrow{color:#e07a2d;font-weight:bold;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+
+/* scroll progress bar */
+.scroll-bar{position:fixed;top:0;left:0;height:3px;background:#e07a2d;width:0%;z-index:100;transition:width .1s}
+
+/* dark mode toggle */
+.mode-toggle{position:fixed;top:14px;right:16px;background:#142b44;color:#fff;border:0;border-radius:20px;padding:8px 14px;font-size:12px;font-weight:bold;cursor:pointer;z-index:60;box-shadow:0 3px 10px #0002}
+
+/* teachers */
+.teacher-card{text-align:center}
+.teacher-avatar{width:64px;height:64px;border-radius:50%;background:#eaf0f5;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 10px}
+
+/* dark theme */
+body.dark{background:#0f1a26;color:#dfe6ee}
+body.dark section{background:#182636}
+body.dark h2{color:#fff;border-bottom-color:#2a3c50}
+body.dark .card{background:#1f3040;border-color:#2a3c50}
+body.dark .card:hover{border-color:#e07a2d88}
+body.dark table{color:#dfe6ee}
+body.dark th{background:#1f3040}
+body.dark td,body.dark th{border-bottom-color:#2a3c50}
+body.dark nav{background:#182636}
+body.dark nav a{color:#dfe6ee}
+body.dark .hero{background:linear-gradient(135deg,#182636,#20293a);border-color:#2a3c50}
+body.dark .stat,body.dark .quote-card,body.dark .faq details,body.dark .ad{background:#1f3040;border-color:#2a3c50}
+body.dark input,body.dark textarea{background:#1f3040;border-color:#2a3c50;color:#dfe6ee}
+body.dark .section-eyebrow{color:#e89358}
+
+/* promo additions */
+.promo-banner{background:linear-gradient(90deg,#e07a2d,#f0994f);color:#fff;text-align:center;padding:10px 12px;font-size:14px;font-weight:bold;position:sticky;top:0;z-index:15}
+.countdown{display:flex;justify-content:center;gap:12px;margin:20px 0;flex-wrap:wrap}
+.countdown div{background:#142b44;color:#fff;border-radius:9px;padding:12px 16px;text-align:center;min-width:64px}
+.countdown span{display:block;font-size:22px;font-weight:bold;color:#e07a2d}
+.countdown small{font-size:11px}
+.social-links{display:flex;justify-content:center;gap:14px;margin-top:14px}
+.social-links a{width:42px;height:42px;border-radius:50%;background:#fff2;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-size:19px;transition:.2s}
+.social-links a:hover{background:#e07a2d}
+.achiever-card{text-align:center}
+.achiever-card .rank{font-size:26px}
+.referral-box{background:linear-gradient(135deg,#fff5ea,#eef7ff);border:1px dashed #e07a2d;border-radius:12px;padding:20px;text-align:center}
+.referral-box .amt{font-size:26px;font-weight:bold;color:#e07a2d}
+body.dark .promo-banner{background:linear-gradient(90deg,#c9691f,#e07a2d)}
+body.dark .referral-box{background:linear-gradient(135deg,#1f3040,#182636);border-color:#e07a2d88}
+body.dark .countdown div{background:#0f1a26}
+
+/* seo keywords */
+.kw-group{margin-bottom:18px}
+.kw-group h4{color:#142b44;margin-bottom:8px}
+.kw-pill{display:inline-block;background:#eaf0f5;color:#142b44;padding:7px 14px;margin:4px;border-radius:18px;font-size:13px;border:1px solid #dbe4ec;transition:.2s}
+.kw-pill:hover{background:#e07a2d;color:#fff;border-color:#e07a2d}
+body.dark .kw-pill{background:#1f3040;color:#dfe6ee;border-color:#2a3c50}
+body.dark .kw-group h4{color:#fff}
+</style></head><body>
+<div class="scroll-bar" id="scrollBar"></div>
+<button class="mode-toggle" id="modeToggle">🌙 Dark Mode</button>
+<div class="promo-banner">🎉 Limited Time: New Admissions Get 10% Off First Month — Enquire Today!</div>
+
+<header>
+<div style="font-size:48px">🎓</div>
+<h1>Tuition Academy</h1>
+<p>Building Brand Awareness through Digital Marketing</p>
+<p>TAE-I Project Based Learning</p>
+<div class="social-links">
+<a href="#" title="Instagram">📷</a>
+<a href="#" title="Facebook">📘</a>
+<a href="https://wa.me/91XXXXXXXXXX" title="WhatsApp" target="_blank">💬</a>
+</div>
+</header>
+
+<nav id="mainNav">
+<a href="#" data-page="home">Home</a>
+<a href="#" data-page="about">Business Profile</a>
+<a href="#" data-page="courses">Courses</a>
+<a href="#" data-page="teachers">Teachers</a>
+<a href="#" data-page="fees">Fees & Timings</a>
+<a href="#" data-page="audience">Target Audience</a>
+<a href="#" data-page="seo">SEO Keywords</a>
+<a href="#" data-page="social">Social Media</a>
+<a href="#" data-page="ad">Advertisement</a>
+<a href="#" data-page="email">Email Marketing</a>
+<a href="#" data-page="improve">Business Improvement</a>
+<a href="#" data-page="testimonials">Testimonials</a>
+<a href="#" data-page="achievers">Achievers</a>
+<a href="#" data-page="refer">Refer & Earn</a>
+<a href="#" data-page="faq">FAQ</a>
+<a href="#" data-page="contact">Contact</a>
+</nav>
+
+<main id="pages">
+
+<section id="home" class="page active hero">
+<h2>Building Brand Awareness for a Tuition Academy</h2>
+<p>Helping students discover quality tuition through a strong digital presence, engaging communication and parent-focused support.</p>
+<button class="btn" data-page="about">Explore Academy</button>
+<button class="btn alt" data-page="courses">View Courses</button>
+
+<div class="countdown" id="countdown">
+<div><span id="cd-days">--</span><small>Days</small></div>
+<div><span id="cd-hours">--</span><small>Hours</small></div>
+<div><span id="cd-mins">--</span><small>Mins</small></div>
+<div><span id="cd-secs">--</span><small>Secs</small></div>
+</div>
+<p><small>⏰ Left for admissions to close this batch</small></p>
+
+<div class="stats-strip">
+<div class="stat"><span class="num">500+</span><span class="lbl">Students Guided</span></div>
+<div class="stat"><span class="num">95%</span><span class="lbl">Result Improvement</span></div>
+<div class="stat"><span class="num">8+</span><span class="lbl">Years of Teaching</span></div>
+<div class="stat"><span class="num">4.8★</span><span class="lbl">Parent Rating</span></div>
+</div>
+</section>
+
+<section id="about" class="page">
+<div class="section-eyebrow">Business Profile</div>
+<h2>About the Academy</h2>
+<div class="grid">
+<div class="card"><b>📚 Business Type</b><br>Local tuition academy</div>
+<div class="card"><b>🎯 Focus</b><br>Academic support and exam preparation</div>
+<div class="card"><b>🧑‍🎓 Students</b><br>Classes 8–12</div>
+<div class="card"><b>🚀 Objective</b><br>Build awareness and attract students through digital marketing.</div>
+</div>
+<p><b>Our approach:</b> Clear teaching, regular guidance and consistent communication with students and parents.</p>
+</section>
+
+<section id="courses" class="page">
+<div class="section-eyebrow">What We Offer</div>
+<h2>Courses</h2>
+<div class="grid">
+<div class="card"><b>📘 Class 8–10</b><br>Foundation, concepts and school exam support.</div>
+<div class="card"><b>📗 Class 11–12</b><br>Board-focused preparation and subject guidance.</div>
+<div class="card"><b>📝 Revision & Tests</b><br>Regular practice, tests and performance review.</div>
+<div class="card"><b>🙋 Doubt Support</b><br>Personal attention and doubt-solving sessions.</div>
+</div>
+</section>
+
+<section id="teachers" class="page">
+<div class="section-eyebrow">Meet the Team</div>
+<h2>Our Teachers</h2>
+<div class="grid">
+<div class="card teacher-card"><div class="teacher-avatar">👩‍🏫</div><b>Mrs. Sharma</b><br>Mathematics<br><small>12+ years experience</small></div>
+<div class="card teacher-card"><div class="teacher-avatar">👨‍🏫</div><b>Mr. Verma</b><br>Science<br><small>10+ years experience</small></div>
+<div class="card teacher-card"><div class="teacher-avatar">👩‍🏫</div><b>Ms. Iyer</b><br>English</br><small>8+ years experience</small></div>
+<div class="card teacher-card"><div class="teacher-avatar">👨‍🏫</div><b>Mr. Khan</b><br>Social Science<br><small>9+ years experience</small></div>
+</div>
+</section>
+
+<section id="fees" class="page">
+<div class="section-eyebrow">Plan Your Batch</div>
+<h2>Fees & Batch Timings</h2>
+<table>
+<tr><th>Batch</th><th>Timing</th><th>Monthly Fee</th></tr>
+<tr><td>Class 8–10 (Morning)</td><td>7:00 AM – 8:30 AM</td><td>₹1,500</td></tr>
+<tr><td>Class 8–10 (Evening)</td><td>5:00 PM – 6:30 PM</td><td>₹1,500</td></tr>
+<tr><td>Class 11–12 (Science)</td><td>6:30 PM – 8:30 PM</td><td>₹2,500</td></tr>
+<tr><td>Weekend Test Batch</td><td>Sunday, 10:00 AM – 1:00 PM</td><td>₹800</td></tr>
+</table>
+<p><small>Fees are indicative for the project demo. Contact the academy for current batch availability and exact pricing.</small></p>
+</section>
+
+<section id="audience" class="page">
+<div class="section-eyebrow">Target Audience</div>
+<h2>Target Audience</h2>
+<table><tr><th>Audience</th><th>Age</th><th>Needs / Behaviour</th></tr>
+<tr><td>Primary: Class 8–12 Students</td><td>13–18</td><td>Better understanding, exam preparation and regular practice.</td></tr>
+<tr><td>Board Exam Students</td><td>15–18</td><td>Structured revision, tests and academic guidance.</td></tr>
+<tr><td>Parents</td><td>Parents/Guardians</td><td>Quality tuition and regular progress updates.</td></tr>
+</table>
+</section>
+
+<section id="seo" class="page">
+<div class="section-eyebrow">Search Visibility</div>
+<h2>SEO Keywords</h2>
+<p>Keywords chosen to help the academy appear in local searches by students and parents:</p>
+
+<div class="kw-group">
+<h4>🎯 Primary Keywords</h4>
+<span class="kw-pill">tuition classes near me</span>
+<span class="kw-pill">best tuition academy in Nagpur</span>
+<span class="kw-pill">class 8 to 12 tuition</span>
+<span class="kw-pill">board exam preparation classes</span>
+</div>
+
+<div class="kw-group">
+<h4>📍 Local / Location-based Keywords</h4>
+<span class="kw-pill">tuition classes in Nagpur</span>
+<span class="kw-pill">home tuition near me</span>
+<span class="kw-pill">coaching classes Nagpur</span>
+</div>
+
+<div class="kw-group">
+<h4>📘 Subject & Service Keywords</h4>
+<span class="kw-pill">maths tuition class 10</span>
+<span class="kw-pill">science tuition class 12</span>
+<span class="kw-pill">doubt solving classes</span>
+<span class="kw-pill">weekend test series</span>
+<span class="kw-pill">personal attention tuition</span>
+</div>
+
+<div class="kw-group">
+<h4>👪 Parent-intent Keywords</h4>
+<span class="kw-pill">affordable tuition classes</span>
+<span class="kw-pill">tuition with progress reports</span>
+<span class="kw-pill">demo class admission</span>
+</div>
+
+<p><small>These keywords guide website content, Google Business Profile listing, and social media captions for better local search ranking.</small></p>
+</section>
+
+<section id="social" class="page">
+<div class="section-eyebrow">Social Media Marketing Plan</div>
+<h2>Social Media Marketing</h2>
+<table><tr><th>Platform</th><th>Content</th><th>Purpose</th></tr>
+<tr><td>Instagram</td><td>Reels, study tips, achievements and class updates</td><td>Reach students</td></tr>
+<tr><td>Facebook</td><td>Parent-focused updates, results and announcements</td><td>Build local awareness</td></tr>
+<tr><td>WhatsApp</td><td>Batch updates, reminders and progress communication</td><td>Stay connected with parents/students</td></tr>
+</table>
+<h3>Weekly Ideas</h3>
+<div class="grid">
+<div class="card"><b>Monday</b><br>Study tip</div>
+<div class="card"><b>Wednesday</b><br>Student achievement</div>
+<div class="card"><b>Friday</b><br>Short educational reel</div>
+<div class="card"><b>Sunday</b><br>Parent/student update</div>
+</div>
+</section>
+
+<section id="ad" class="page">
+<div class="section-eyebrow">Advertisement Design</div>
+<h2>Advertisement</h2>
+<div class="ad">
+<p>TUITION ACADEMY</p>
+<div class="offer">BUILD YOUR CONFIDENCE. IMPROVE YOUR RESULTS.</div>
+<p>Classes 8–12 • Regular Tests • Personal Guidance</p>
+<p><b>Admissions Open</b></p>
+<p>Contact the academy to know about batches and courses.</p>
+</div>
+</section>
+
+<section id="email" class="page">
+<div class="section-eyebrow">Email Marketing Plan</div>
+<h2>Email Marketing</h2>
+<div class="card">
+<h3>Subject: Admissions Open for Classes 8–12!</h3>
+<p>Dear Parent,</p>
+<p>We are welcoming students for our new academic batches with structured learning, regular tests and progress guidance.</p>
+<p>Help your child build stronger concepts and prepare confidently for exams.</p>
+<p><b>Contact us to know more about the available batches.</b></p>
+<p>Regards,<br>Tuition Academy</p>
+</div>
+</section>
+
+<section id="improve" class="page">
+<div class="section-eyebrow">Business Improvement Suggestions</div>
+<h2>Business Improvement</h2>
+<ol>
+<li>Post useful educational content consistently on social media.</li>
+<li>Share genuine student achievements and reviews.</li>
+<li>Provide regular progress updates to parents.</li>
+<li>Offer demo/orientation sessions for new students.</li>
+<li>Maintain an updated Google Business Profile.</li>
+<li>Track enquiries, admissions and social media response.</li>
+</ol>
+</section>
+
+<section id="testimonials" class="page">
+<div class="section-eyebrow">What Parents Say</div>
+<h2>Testimonials</h2>
+<div class="quote-card">"My daughter's confidence in Maths improved a lot after joining. The teachers explain everything patiently." <br><b>— Parent, Class 10 Student</b></div>
+<div class="quote-card">"Regular tests and updates helped us track progress every month. Very organised academy." <br><b>— Parent, Class 12 Student</b></div>
+<div class="quote-card">"The doubt-solving sessions really helped me before my board exams." <br><b>— Student, Class 12</b></div>
+</section>
+
+<section id="achievers" class="page">
+<div class="section-eyebrow">Proud Moments</div>
+<h2>Top Achievers</h2>
+<div class="grid">
+<div class="card achiever-card"><div class="rank">🥇</div><b>Ananya S.</b><br>Class 10 — 96%</div>
+<div class="card achiever-card"><div class="rank">🥈</div><b>Rohan P.</b><br>Class 12 — 94%</div>
+<div class="card achiever-card"><div class="rank">🥉</div><b>Simran K.</b><br>Class 10 — 92%</div>
+<div class="card achiever-card"><div class="rank">⭐</div><b>Aditya M.</b><br>Class 12 — 91%</div>
+</div>
+</section>
+
+<section id="refer" class="page">
+<div class="section-eyebrow">Spread the Word</div>
+<h2>Refer & Earn</h2>
+<div class="referral-box">
+<p>Know a friend who needs tuition help?</p>
+<div class="amt">Get ₹500 Off</div>
+<p>on your next month's fee for every successful referral — and your friend gets 10% off their first month too!</p>
+<button class="btn" data-page="contact">Refer a Friend Now</button>
+</div>
+</section>
+
+<section id="faq" class="page">
+<div class="section-eyebrow">Quick Answers</div>
+<h2>Frequently Asked Questions</h2>
+<div class="faq">
+<details><summary>Which classes do you teach?</summary><p>We currently offer tuition for Class 8 to Class 12, including board exam preparation.</p></details>
+<details><summary>Do you provide test series?</summary><p>Yes, regular tests and revision sessions are conducted to track student progress.</p></details>
+<details><summary>How are parents updated?</summary><p>Parents receive regular updates via WhatsApp and periodic progress reports.</p></details>
+<details><summary>Is a demo class available?</summary><p>Yes, new students can attend an orientation/demo session before enrolling.</p></details>
+</div>
+</section>
+
+<section id="contact" class="page">
+<h2>Contact</h2>
+<div class="contact-grid">
+<div class="card"><b>📍 Address</b><br>Your Academy Address, Nagpur</div>
+<div class="card"><b>📞 Phone</b><br>+91 XXXXX XXXXX</div>
+<div class="card"><b>✉️ Email</b><br>info@tuitionacademy.com</div>
+</div>
+<div class="card" style="margin-top:15px">
+<h3>Enquiry</h3>
+<input placeholder="Student / Parent Name">
+<input placeholder="Phone Number">
+<textarea rows="4" placeholder="Your enquiry"></textarea>
+<button class="btn">Submit Enquiry</button>
+</div>
+</section>
+
+</main>
+
+<a href="https://wa.me/91XXXXXXXXXX" class="wa-float" title="Chat on WhatsApp" target="_blank">💬</a>
+
+<footer>
+<b>Tuition Academy – Digital Brand Awareness Project</b><br>
+TAE-I Project Based Learning<br>
+<small>Made by Devyani Kahalkar</small>
+</footer>
+
+<script>
+const pages=document.querySelectorAll('.page'), links=document.querySelectorAll('#mainNav a'), triggers=document.querySelectorAll('[data-page]');
+function showPage(id){pages.forEach(p=>p.classList.toggle('active',p.id===id));links.forEach(a=>a.classList.toggle('active',a.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'});}
+triggers.forEach(x=>x.addEventListener('click',e=>{e.preventDefault();showPage(x.dataset.page)})); showPage('home');
+
+const scrollBar=document.getElementById('scrollBar');
+function updateScrollBar(){const h=document.documentElement;const pct=(h.scrollTop)/(h.scrollHeight-h.clientHeight||1)*100;scrollBar.style.width=pct+'%';}
+window.addEventListener('scroll',updateScrollBar);
+
+const modeToggle=document.getElementById('modeToggle');
+modeToggle.addEventListener('click',()=>{
+  document.body.classList.toggle('dark');
+  const isDark=document.body.classList.contains('dark');
+  modeToggle.textContent=isDark?'☀️ Light Mode':'🌙 Dark Mode';
+});
+
+// countdown to a fixed target date (edit as needed)
+const target=new Date();
+target.setDate(target.getDate()+15);
+function updateCountdown(){
+  const now=new Date();
+  let diff=target-now;
+  if(diff<0)diff=0;
+  const d=Math.floor(diff/(1000*60*60*24));
+  const h=Math.floor((diff/(1000*60*60))%24);
+  const m=Math.floor((diff/(1000*60))%60);
+  const s=Math.floor((diff/1000)%60);
+  document.getElementById('cd-days').textContent=d;
+  document.getElementById('cd-hours').textContent=h;
+  document.getElementById('cd-mins').textContent=m;
+  document.getElementById('cd-secs').textContent=s;
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+</script>
+</body></html>
